@@ -16,16 +16,16 @@ export const colorTokens = {
     1000: "#000000",
   },
   primary: {
-    50: "#E6FBFF",
-    100: "#CCF7FE",
-    200: "#99EEFD",
-    300: "#66E6FC",
-    400: "#33DDFB",
-    500: "#00D5FA",
-    600: "#00A0BC",
-    700: "#006B7D",
-    800: "#00353F",
-    900: "#001519",
+    50: "#c2f0ce",
+    100: "#b4f1c4",
+    200: "#95f3ae",
+    300: "#71f895",
+    400: "#47f776",
+    500: "#34a853",
+    600: "#0da034",
+    700: "#107c2d",
+    800: "#034d17",
+    900: "#02250c",
   },
 };
 
@@ -75,30 +75,30 @@ export const themeSettings = (mode) => {
           }),
     },
     typography: {
-      fontFamily: ["Rubik", "sans-serif"].join(","),
+      fontFamily: ["Noto Sans", "sans-serif"].join(","),
       fontSize: 12,
       h1: {
         fontFamily: ["Rubik", "sans-serif"].join(","),
         fontSize: 40,
       },
       h2: {
-        fontFamily: ["Rubik", "sans-serif"].join(","),
+        fontFamily: ["Noto Sans", "sans-serif"].join(","),
         fontSize: 32,
       },
       h3: {
-        fontFamily: ["Rubik", "sans-serif"].join(","),
+        fontFamily: ["Noto Sans", "sans-serif"].join(","),
         fontSize: 24,
       },
       h4: {
-        fontFamily: ["Rubik", "sans-serif"].join(","),
+        fontFamily: ["Noto Sans", "sans-serif"].join(","),
         fontSize: 20,
       },
       h5: {
-        fontFamily: ["Rubik", "sans-serif"].join(","),
+        fontFamily: ["Noto Sans", "sans-serif"].join(","),
         fontSize: 16,
       },
       h6: {
-        fontFamily: ["Rubik", "sans-serif"].join(","),
+        fontFamily: ["Noto Sans", "sans-serif"].join(","),
         fontSize: 14,
       },
     },
