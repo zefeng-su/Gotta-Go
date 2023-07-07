@@ -21,7 +21,7 @@ const registerSchema = yup.object().shape({
   lastName: yup.string().required("required"),
   email: yup.string().email("invalid email").required("required"),
   password: yup.string().required("required"),
-  picture: yup.string(),
+  picture: yup.string().required("required"),
 });
 
 const loginSchema = yup.object().shape({
@@ -34,7 +34,6 @@ const initialValuesRegister = {
   lastName: "",
   email: "",
   password: "",
-  location: "",
   picture: "",
 };
 
@@ -56,12 +55,19 @@ const Form = () => {
     // this allows us to send form info with image
     const formData = new FormData();
     for (let value in values) {
-      if (value === 'picture' && values.picture) {
-        formData.append('picturePath', values.picture.name);
-      } else {
-        formData.append(value, values[value]);
-      }
+      formData.append(value, values[value]);
     }
+    formData.append("picturePath", values.picture.name);
+
+    // this allows picture to be not required, but causes a bug at the moment
+    // const formData = new FormData();
+    // for (let value in values) {
+    //   if (value === 'picture' && values.picture) {
+    //     formData.append('picturePath', values.picture.name);
+    //   } else {
+    //     formData.append(value, values[value]);
+    //   }
+    //}
 
     const savedUserResponse = await fetch(
       //placeholder db location
