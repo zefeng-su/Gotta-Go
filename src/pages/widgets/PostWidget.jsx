@@ -113,7 +113,7 @@ const PostWidget = ({
           </FlexBetween>
         </FlexBetween>
 
-        {isCurrentUserPost && ( // Render delete button only for the current user's posts
+        {isCurrentUserPost && ( // Render delete/edit button only for the current user's posts
           <FlexBetween gap="0.3rem">
             <IconButton>
               <EditOutlined />
