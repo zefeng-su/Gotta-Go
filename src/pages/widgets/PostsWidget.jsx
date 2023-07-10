@@ -39,19 +39,8 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   return (
     <>
-      {posts.map(
-        ({
-          _id,
-          userId,
-          firstName,
-          lastName,
-          description,
-          location,
-          picturePath,
-          userPicturePath,
-          likes,
-          comments,
-        }) => (
+      {Array.isArray(posts) &&
+        posts.map(({ _id, userId, firstName, lastName, description, location, picturePath, userPicturePath, likes, comments }) => (
           <PostWidget
             key={_id}
             postId={_id}
@@ -64,8 +53,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
             likes={likes}
             comments={comments}
           />
-        )
-      )}
+        ))}
     </>
   );
 };

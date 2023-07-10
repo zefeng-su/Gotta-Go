@@ -20,6 +20,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const medium = palette.neutral.medium;
 
   const isFriend = friends.find((friend) => friend._id === friendId);
+  const isCurrentUser = friendId === _id;
 
   const patchFriend = async () => {
     const response = await fetch(
@@ -35,6 +36,26 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
     const data = await response.json();
     dispatch(setFriends({ friends: data }));
   };
+
+  // Conditional rendering of the add friend button
+  let renderAddFriendButton = null;
+  if (!isCurrentUser) {
+    renderAddFriendButton = (
+      <IconButton
+        onClick={() => patchFriend()}
+        sx={{
+          backgroundColor: primaryLight,
+          p: "0.6rem",
+        }}
+      >
+        {isFriend ? (
+          <PersonRemoveOutlined sx={{ color: primaryDark }} />
+        ) : (
+          <PersonAddOutlined sx={{ color: primaryDark }} />
+        )}
+      </IconButton>
+    );
+  }
 
   return (
     <FlexBetween>
@@ -60,20 +81,11 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
             {name}
           </Typography>
           <Typography color={medium} fontSize="0.75rem">
-            {subtitle} 
+            {subtitle}
           </Typography>
         </Box>
       </FlexBetween>
-      <IconButton
-        onClick={() => patchFriend()}
-        sx={{ backgroundColor: primaryLight, p: "0.6rem" }}
-      >
-        {isFriend ? (
-          <PersonRemoveOutlined sx={{ color: primaryDark }} />
-        ) : (
-          <PersonAddOutlined sx={{ color: primaryDark }} />
-        )}
-      </IconButton>
+      {renderAddFriendButton}
     </FlexBetween>
   );
 };
