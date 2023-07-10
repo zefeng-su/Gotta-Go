@@ -5,13 +5,14 @@ import {
   DeleteOutlined,
   EditOutlined
 } from "@mui/icons-material";
-import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, Divider, IconButton, Typography, useTheme, InputBase, Button } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import Friend from "components/Friend";
 import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost, deletePost } from "state";
+import UserImage from "components/UserImage";
 
 const PostWidget = ({
   postId,
@@ -133,9 +134,47 @@ const PostWidget = ({
               <Typography sx={{ color: main, m: "0.5rem 0", pl: "1rem" }}>
                 {comment}
               </Typography>
+              
             </Box>
           ))}
           <Divider />
+
+          <FlexBetween mt="0.5rem" gap="1.5rem">
+            <UserImage image={userPicturePath} />
+            <InputBase
+              placeholder={`Write a comment...`}
+              onChange={(e) => setPost(e.target.value)}//setup as setComment later in state
+              value={comments}
+              sx={{
+                width: "100%",
+                backgroundColor: palette.neutral.light,
+                borderRadius: "0.75rem",
+                padding: "1rem 2rem",
+              }}
+            />
+          
+            <FlexBetween gap="0.3rem">
+              <IconButton>
+                <EditOutlined />
+              </IconButton>
+
+              <IconButton>
+                <DeleteOutlined />
+              </IconButton>
+            </FlexBetween>   
+          
+            <Button
+              sx={{
+                color: palette.background.alt,
+                backgroundColor: palette.primary.main,
+                borderRadius: "3rem",
+              }}
+            >
+              POST
+            </Button>
+
+          </FlexBetween>
+
         </Box>
       )}
     </WidgetWrapper>
