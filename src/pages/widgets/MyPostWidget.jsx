@@ -24,7 +24,7 @@ import {
   import { useDispatch, useSelector } from "react-redux";
   import { setPosts } from "state";
   
-  const MyPostWidget = ({ userId,picturePath }) => {
+  function MyPostWidget ({ userId,picturePath }) {
     const dispatch = useDispatch();
     const [user, setUser] = useState(null);
     const [isImage, setIsImage] = useState(false);

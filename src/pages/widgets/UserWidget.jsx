@@ -10,7 +10,7 @@ import {
   import { useEffect, useState } from "react";
   import { useNavigate } from "react-router-dom";
   
-  const UserWidget = ({ userId, picturePath }) => {
+  function UserWidget ({ userId, picturePath }) {
     const [user, setUser] = useState(null);
     const { palette } = useTheme();
     const navigate = useNavigate();

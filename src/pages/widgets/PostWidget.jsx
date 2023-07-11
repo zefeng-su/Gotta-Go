@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPost, deletePost, setLike } from "state";
 import UserImage from "components/UserImage";
 
-const PostWidget = ({
+function PostWidget ({
   postId,
   postUserId,
   name,
@@ -23,8 +23,7 @@ const PostWidget = ({
   picturePath,
   userPicturePath,
   likes,
-  comments,
-}) => {
+  comments,}) {
   const [isComments, setIsComments] = useState(false);
   const [isEditing, setIsEditing] = useState(false); //state for tracking edit mode
   const [editedDescription, setEditedDescription] = useState(description); //state for storing the edited description

@@ -42,7 +42,7 @@ const initialValuesLogin = {
   password: "",
 };
 
-const Form = () => {
+function Form () {
   const [pageType, setPageType] = useState("login");
   const { palette } = useTheme();
   const dispatch = useDispatch();
