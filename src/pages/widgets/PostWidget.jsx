@@ -12,7 +12,7 @@ import Friend from "components/Friend";
 import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPost, deletePost } from "state";
+import { setPost, deletePost, setLike } from "state";
 import UserImage from "components/UserImage";
 
 const PostWidget = ({
@@ -65,7 +65,6 @@ const PostWidget = ({
     }
   };
   
-  
 
   const handleDelete = async () => {
     try {
@@ -99,7 +98,7 @@ const PostWidget = ({
       body: JSON.stringify({ userId: loggedInUserId }),
     });
     const updatedPost = await response.json();
-    dispatch(setPost({ post: updatedPost }));
+    dispatch(setLike({ post: updatedPost }));
   };
 
   const isCurrentUserPost = postUserId === loggedInUserId; // Check if the post belongs to the current logged-in user
