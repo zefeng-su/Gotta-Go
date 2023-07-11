@@ -65,7 +65,6 @@ const PostWidget = ({
     }
   };
   
-
   const handleDelete = async () => {
     try {
       const response = await fetch(`http://localhost:3001/posts/${postId}/delete`, {
@@ -117,6 +116,13 @@ const PostWidget = ({
           onChange={(e) => setEditedDescription(e.target.value)}
           fullWidth
           multiline
+          sx={{
+            mt: "0.75rem",
+            width: "100%",
+            backgroundColor: palette.neutral.light,
+            borderRadius: "0.75rem",
+            padding: "1rem 1rem",
+          }}
         />
       ) : (
         <Typography color={main} sx={{ mt: "1rem" }}>
