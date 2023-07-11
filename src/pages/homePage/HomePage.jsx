@@ -1,5 +1,5 @@
 import { Box, useMediaQuery } from "@mui/material";
-import Navbar from "pages/navbar";
+import Navbar from "pages/navbar/Navbar";
 import UserWidget from "pages/widgets/UserWidget";
 import MyPostWidget from "pages/widgets/MyPostWidget";
 import PostsWidget from "pages/widgets/PostsWidget";
