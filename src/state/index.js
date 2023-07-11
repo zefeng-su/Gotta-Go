@@ -33,12 +33,16 @@ export const authSlice = createSlice({
       state.posts = action.payload.posts;
     },
     setPost: (state, action) => {
+      const { postId, description } = action.payload; // Destructure postId and description from the payload
       const updatedPosts = state.posts.map((post) => {
-        if (post._id === action.payload.post._id) return action.payload.post;
+        if (post._id === postId) {
+          return { ...post, description }; // Update the description of the matching post
+        }
         return post;
       });
       state.posts = updatedPosts;
     },
+    
     deletePost: (state, action) => {
       state.posts = state.posts.filter((post) => post._id !== action.payload.postId);
     },

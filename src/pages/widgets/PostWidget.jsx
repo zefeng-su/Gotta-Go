@@ -3,7 +3,8 @@ import {
   FavoriteBorderOutlined,
   FavoriteOutlined,
   DeleteOutlined,
-  EditOutlined
+  EditOutlined,
+  SaveOutlined
 } from "@mui/icons-material";
 import { Box, Divider, IconButton, Typography, useTheme, InputBase, Button } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
@@ -25,6 +26,8 @@ const PostWidget = ({
   comments,
 }) => {
   const [isComments, setIsComments] = useState(false);
+  const [isEditing, setIsEditing] = useState(false); //state for tracking edit mode
+  const [editedDescription, setEditedDescription] = useState(description); //state for storing the edited description
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
   const loggedInUserId = useSelector((state) => state.user._id);
@@ -35,9 +38,37 @@ const PostWidget = ({
   const main = palette.neutral.main;
   const primary = palette.primary.main;
 
+  const handleEdit = () => {
+    setIsEditing(true); // Enter edit mode
+  };
+
+  const handleEditSave = async () => {
+    try {
+      const response = await fetch(`http://localhost:3001/posts/${postId}/edit`, {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ description: editedDescription }), // Send the edited description in the request body
+      });
+  
+      if (response.ok) {
+        setIsEditing(false); // Exit edit mode
+        dispatch(setPost({ postId, description: editedDescription })); // Pass the postId and editedDescription to the action
+      } else {
+        // Handle error if the edit request was not successful
+        throw new Error("Failed to edit post");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+  
+
   const handleDelete = async () => {
     try {
-      console.log(token);
       const response = await fetch(`http://localhost:3001/posts/${postId}/delete`, {
         method: "DELETE",
         headers: {
@@ -48,7 +79,7 @@ const PostWidget = ({
       if (response.ok) {
         // Dispatch an action to update the Redux store
         dispatch(deletePost(postId));
-        window.location.reload(); //temp solution to refresh after delete
+        window.location.reload(); // Temp solution to refresh after delete
       } else {
         // Handle error if the delete request was not successful
         throw new Error("Failed to delete post");
@@ -81,9 +112,18 @@ const PostWidget = ({
         subtitle="<Insert Date>"
         userPicturePath={userPicturePath}
       />
-      <Typography color={main} sx={{ mt: "1rem" }}>
-        {description}
-      </Typography>
+      {isEditing ? ( // Render editable description input field when in edit mode
+        <InputBase
+          value={editedDescription}
+          onChange={(e) => setEditedDescription(e.target.value)}
+          fullWidth
+          multiline
+        />
+      ) : (
+        <Typography color={main} sx={{ mt: "1rem" }}>
+          {description}
+        </Typography>
+      )}
       {picturePath && (
         <img
           width="100%"
@@ -116,9 +156,15 @@ const PostWidget = ({
 
         {isCurrentUserPost && ( // Render delete/edit button only for the current user's posts
           <FlexBetween gap="0.3rem">
-            <IconButton>
-              <EditOutlined />
-            </IconButton>
+            {isEditing ? ( // Render save button when in edit mode
+              <IconButton onClick={handleEditSave}>
+                <SaveOutlined />
+              </IconButton>
+            ) : (
+              <IconButton onClick={handleEdit}>
+                <EditOutlined  />
+              </IconButton>
+            )}
 
             <IconButton onClick={handleDelete}>
               <DeleteOutlined />
@@ -134,7 +180,6 @@ const PostWidget = ({
               <Typography sx={{ color: main, m: "0.5rem 0", pl: "1rem" }}>
                 {comment}
               </Typography>
-              
             </Box>
           ))}
           <Divider />
@@ -143,7 +188,7 @@ const PostWidget = ({
             <UserImage image={userPicturePath} />
             <InputBase
               placeholder={`Write a comment...`}
-              onChange={(e) => setPost(e.target.value)}//setup as setComment later in state
+              onChange={(e) => setPost(e.target.value)} // Setup as setComment later in state
               value={comments}
               sx={{
                 width: "100%",
@@ -152,7 +197,7 @@ const PostWidget = ({
                 padding: "1rem 2rem",
               }}
             />
-          
+
             <FlexBetween gap="0.3rem">
               <IconButton>
                 <EditOutlined />
@@ -161,8 +206,8 @@ const PostWidget = ({
               <IconButton>
                 <DeleteOutlined />
               </IconButton>
-            </FlexBetween>   
-          
+            </FlexBetween>
+
             <Button
               sx={{
                 color: palette.background.alt,
@@ -172,9 +217,7 @@ const PostWidget = ({
             >
               POST
             </Button>
-
           </FlexBetween>
-
         </Box>
       )}
     </WidgetWrapper>
