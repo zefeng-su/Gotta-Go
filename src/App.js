@@ -30,7 +30,7 @@ function App() {
               path="/profile/:userId"
               element={isAuth ? <ProfilePage /> : <Navigate to="/" />}
             />
-            <Route path="/profileEdit" element={<ProfileEdit />}/>
+            <Route path="/profileEdit/:userId" element={<ProfileEdit />}/>
             <Route path="*" element={<Navigate to="/home" />} />
           </Routes>
         </ThemeProvider>

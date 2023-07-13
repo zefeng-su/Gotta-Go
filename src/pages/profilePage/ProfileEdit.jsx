@@ -31,7 +31,9 @@ function ProfileEdit() {
           </Grid>
         </Grid>
 
-        <Dropzone>
+        <Dropzone
+         acceptedFiles=".jpg,.jpeg,.png"
+         multiple={false}>
           {({ getRootProps, getInputProps }) => (
             <Box
               {...getRootProps()}
@@ -50,10 +52,10 @@ function ProfileEdit() {
           )}
         </Dropzone>
 
-        <Grid container justifyContent="space-between">
+        <Grid container justifyContent="center">
           <Button
             sx={{
-              m: "2rem 0",
+              m: "2rem",
               p: "1rem",
               backgroundColor: palette.primary.main,
               color: palette.background.alt,
@@ -66,7 +68,7 @@ function ProfileEdit() {
           <Button
             onClick={() => navigate(`/home`)}
             sx={{
-              m: "2rem 0",
+              m: "2rem",
               p: "1rem",
               backgroundColor: palette.primary.main,
               color: palette.background.alt,
@@ -80,7 +82,8 @@ function ProfileEdit() {
         <Grid container justifyContent="center">
           <Button
             sx={{
-              m: "2rem 0",
+              m: "2rem",
+              mt:"0rem",
               p: "1rem",
               backgroundColor: "red",
               color: palette.background.alt,
