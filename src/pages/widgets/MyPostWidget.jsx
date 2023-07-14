@@ -124,7 +124,8 @@ import {
                   >
                     <input {...getInputProps()} />
                     {!image ? (
-                      <p>Add Image Here</p>
+                      <Typography>Add Image Here (jpeg, jpg or png)</Typography>
+              
                     ) : (
                       <FlexBetween>
                         <Typography>{image.name}</Typography>

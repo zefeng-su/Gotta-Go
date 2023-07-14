@@ -182,7 +182,7 @@ function Form () {
                       >
                         <input {...getInputProps()} />
                         {!values.picture ? (
-                          <p>Upload Profile Picture</p>
+                          <p>Upload Profile Picture (jpeg, jpg or png)</p>
                         ) : (
                           <FlexBetween>
                             <Typography>{values.picture.name}</Typography>

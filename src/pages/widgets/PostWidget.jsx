@@ -13,7 +13,7 @@ import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost, deletePost, setLike } from "state";
-import UserImage from "components/UserImage";
+//import UserImage from "components/UserImage";
 
 function PostWidget ({
   postId,
