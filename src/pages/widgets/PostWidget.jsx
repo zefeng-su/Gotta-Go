@@ -189,7 +189,6 @@ function PostWidget ({
           <Divider />
 
           <FlexBetween mt="0.5rem" gap="1.5rem">
-            <UserImage image={userPicturePath} />
             <InputBase
               placeholder={`Write a comment...`}
               onChange={(e) => setPost(e.target.value)} // Setup as setComment later in state
@@ -201,16 +200,6 @@ function PostWidget ({
                 padding: "1rem 2rem",
               }}
             />
-
-            <FlexBetween gap="0.3rem">
-              <IconButton>
-                <EditOutlined />
-              </IconButton>
-
-              <IconButton>
-                <DeleteOutlined />
-              </IconButton>
-            </FlexBetween>
 
             <Button
               sx={{
