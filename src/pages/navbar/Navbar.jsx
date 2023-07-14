@@ -38,6 +38,7 @@ function Navbar () {
   const background = theme.palette.background.default;
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
+  const mediumMain = theme.palette.neutral.mediumMain;
 
 const fullName = `${user.firstName} ${user.lastName}`;
 
@@ -66,10 +67,37 @@ const fullName = `${user.firstName} ${user.lastName}`;
             gap="3rem"
             padding="0.1rem 1.5rem"
           >
-            <InputBase placeholder="Search..." />
-            <IconButton>
-              <Search />
-            </IconButton>
+            
+            <FlexBetween gap="0.25rem">
+             
+            <Typography color={mediumMain}>Filter Tags</Typography>
+            <FormControl variant="standard">
+              <Select
+                value="Tags"
+                sx={{
+                  backgroundColor: neutralLight,
+                  width: "150px",
+                  borderRadius: "0.25rem",
+                  p: "0.25rem 1rem",
+                  "& .MuiSvgIcon-root": {
+                    pr: "0.25rem",
+                    width: "3rem",
+                  },
+                  "& .MuiSelect-select:focus": {
+                    backgroundColor: neutralLight,
+                  },
+                }}
+                input={<InputBase />}
+              >
+                <MenuItem>Food</MenuItem>
+                <MenuItem>Services</MenuItem>
+                <MenuItem>Attractions</MenuItem>
+                <MenuItem>Hobbies</MenuItem>
+                <MenuItem>Others</MenuItem>
+              </Select>
+            </FormControl>
+          </FlexBetween>
+
           </FlexBetween>
         )}
       </FlexBetween>

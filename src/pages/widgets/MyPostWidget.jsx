@@ -5,12 +5,16 @@ import {
     //MoreHorizOutlined,
     ImageOutlined,  
     LocationOnOutlined,
+    LocalOfferOutlined,
   } from "@mui/icons-material";
   import {
     Box,
     Divider,
     Typography,
     InputBase,
+    Select,
+    MenuItem,
+    FormControl,
     useTheme,
     Button,
     IconButton,
@@ -34,6 +38,8 @@ import {
     const { _id } = useSelector((state) => state.user);
     const token = useSelector((state) => state.token);
     //const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
+    const theme = useTheme();
+    const neutralLight = theme.palette.neutral.light;
     const mediumMain = palette.neutral.mediumMain;
     const medium = palette.neutral.medium;
     
@@ -157,12 +163,42 @@ import {
               <LocationOnOutlined sx={{ color: mediumMain }} />
               <Typography color={mediumMain}>Location</Typography>
           </FlexBetween>
-
+          <FlexBetween gap="0.25rem">
+            <LocalOfferOutlined sx={{ color: mediumMain }}/>
+            <Typography color={mediumMain}>Tag</Typography>
+            <FormControl variant="standard">
+              <Select
+                value="Tags"
+                sx={{
+                  backgroundColor: neutralLight,
+                  width: "150px",
+                  borderRadius: "0.25rem",
+                  p: "0.25rem 1rem",
+                  "& .MuiSvgIcon-root": {
+                    pr: "0.25rem",
+                    width: "3rem",
+                  },
+                  "& .MuiSelect-select:focus": {
+                    backgroundColor: neutralLight,
+                  },
+                }}
+                input={<InputBase />}
+              >
+                <MenuItem>Food</MenuItem>
+                <MenuItem>Services</MenuItem>
+                <MenuItem>Attractions</MenuItem>
+                <MenuItem>Hobbies</MenuItem>
+                <MenuItem>Others</MenuItem>
+              </Select>
+            </FormControl>
+          </FlexBetween>
+         
+          
           <FlexBetween></FlexBetween>
           <FlexBetween></FlexBetween>
           <FlexBetween></FlexBetween>
           <FlexBetween></FlexBetween>
-   
+          
           <Button
             disabled={!post}
             onClick={handlePost}
