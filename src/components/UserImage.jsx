@@ -8,7 +8,7 @@ function UserImage ({image, size="60px"}) {
                 width={size}
                 height={size}
                 alt="user"
-                src={`http://localhost:3001/assets/${image}`} //change to cloudinary later
+                src={`${image}`}  
             />
         </Box>
     )
