@@ -64,26 +64,34 @@ import {
         firstName,
       } = user;
     
-    const handlePost = async () => {
-      const formData = new FormData();
-      formData.append("userId", _id);
-      formData.append("description", post);
-      if (image) {
-        formData.append("picture", image);
-        formData.append("picturePath", image.name);
-      }
-  
-      const response = await fetch(`http://localhost:3001/posts`, {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-        body: formData,
-      });
-      const posts = await response.json();
-      dispatch(setPosts({ posts }));
-      setImage(null);
-      setPost("");
-      window.location.reload();//temp solution to refresh after submit post
-    };
+      const handlePost = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("userId", _id);
+        formData.append("description", post);
+      
+        if (image) {
+          formData.append("picture", image);
+          formData.append("picturePath", image.name);
+        } else {
+          formData.append("picturePath", ""); // include an empty string for picturePath
+        }
+      
+        const response = await fetch(`http://localhost:3001/posts`, {
+          method: "POST",
+          headers: { Authorization: `Bearer ${token}` },
+          body: formData,
+        });
+      
+        const posts = await response.json();
+        dispatch(setPosts({ posts }));
+      
+        setImage(null);
+        setPost("");
+        window.location.reload(); //temp solution to refresh after submitting post
+      };
+      
+      
   
     return (
       <WidgetWrapper>
@@ -169,7 +177,7 @@ import {
             <Typography color={mediumMain}>Tag</Typography>
             <FormControl variant="standard">
               <Select
-                value="Tags"
+                value=""
                 sx={{
                   backgroundColor: neutralLight,
                   width: "150px",
