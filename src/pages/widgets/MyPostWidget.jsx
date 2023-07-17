@@ -44,7 +44,7 @@ import {
     const medium = palette.neutral.medium;
     
     const getUser = async () => {
-        const response = await fetch(`http://localhost:3001/users/${userId}`, {
+        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/users/${userId}`, {
           method: "GET",
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -77,7 +77,7 @@ import {
           formData.append("picturePath", ""); // include an empty string for picturePath
         }
       
-        const response = await fetch(`http://localhost:3001/posts`, {
+        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/posts`, {
           method: "POST",
           headers: { Authorization: `Bearer ${token}` },
           body: formData,

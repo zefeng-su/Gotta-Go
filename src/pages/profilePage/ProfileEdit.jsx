@@ -16,7 +16,7 @@ function ProfileEdit() {
     if (window.confirm("Confirm the change? You have to login again after clicking OK")) {
       try {
         const userProfile = { ...values }; // Create a copy of the updated values object
-        const existingProfile = await fetch(`http://localhost:3001/users/${userId}`, {
+        const existingProfile = await fetch(`${process.env.REACT_APP_SERVER_URL}/users/${userId}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -26,7 +26,7 @@ function ProfileEdit() {
         // Merge the existing picturePath with the updated values
         userProfile.picturePath = existingProfile.picturePath;
   
-        await fetch(`http://localhost:3001/users/${userId}`, {
+        await fetch(`${process.env.REACT_APP_SERVER_URL}/users/${userId}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -45,7 +45,7 @@ function ProfileEdit() {
   const handleDeleteAccount = async () => {
     if (window.confirm("Are you sure you want to delete your account?")) {
       try {
-        await fetch(`http://localhost:3001/users/${userId}/delete`, {
+        await fetch(`${process.env.REACT_APP_SERVER_URL}/users/${userId}/delete`, {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${token}`,

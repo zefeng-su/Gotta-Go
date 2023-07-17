@@ -32,7 +32,7 @@ const gitLogoStyle = {
  }
 
 function About() {
-    // const theme = useTheme();
+    // const theme = useTheme(); //import if using later
     // const neutralLight = theme.palette.neutral.light;
     // const dark = theme.palette.neutral.dark;
     // const background = theme.palette.background.default;

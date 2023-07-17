@@ -43,7 +43,7 @@ function PostWidget ({
 
   const handleEditSave = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/posts/${postId}/edit`, {
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/posts/${postId}/edit`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -66,7 +66,7 @@ function PostWidget ({
   
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/posts/${postId}/delete`, {
+      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/posts/${postId}/delete`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -87,7 +87,7 @@ function PostWidget ({
   };
 
   const patchLike = async () => {
-    const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
+    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/posts/${postId}/like`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,

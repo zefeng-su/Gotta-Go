@@ -16,6 +16,7 @@ import { setLogin } from "state";
 import Dropzone from "react-dropzone";
 import FlexBetween from "components/FlexBetween";
 
+
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("required"),
   lastName: yup.string().required("required"),
@@ -71,7 +72,7 @@ function Form () {
 
     const savedUserResponse = await fetch(
       //placeholder db location
-      "http://localhost:3001/auth/register", 
+      `${process.env.REACT_APP_SERVER_URL}/auth/register`, 
       {
         method: "POST",
         body: formData,
@@ -87,7 +88,7 @@ function Form () {
 
   const login = async (values, onSubmitProps) => {
     //placeholder db location
-    const loggedInResponse = await fetch("http://localhost:3001/auth/login" , {   
+    const loggedInResponse = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login` , {   
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
