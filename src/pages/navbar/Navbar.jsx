@@ -112,7 +112,9 @@ const fullName = `${user.firstName} ${user.lastName}`;
               <LightMode sx={{ color: dark, fontSize: "25px" }} />
             )}
           </IconButton>
-          <Help sx={{ fontSize: "25px" }} />
+          <IconButton onClick={() => navigate("/about")}>
+            <Help sx={{ color: dark , fontSize: "25px" }} />
+          </IconButton>
           <FormControl variant="standard" value={fullName}>
             <Select
               value={fullName}
@@ -185,7 +187,9 @@ const fullName = `${user.firstName} ${user.lastName}`;
                 <LightMode sx={{ color: dark, fontSize: "25px" }} />
               )}
             </IconButton>
-            <Help sx={{ fontSize: "25px" }} />
+            <IconButton onClick={() => navigate("/about")}>
+              <Help sx={{ color: dark , fontSize: "25px" }} />
+            </IconButton>
             <FormControl variant="standard" value={fullName}>
               <Select
                 value={fullName}

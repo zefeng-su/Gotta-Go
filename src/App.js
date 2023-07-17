@@ -3,6 +3,7 @@ import HomePage from "pages/homePage/HomePage";
 import LoginPage from "pages/loginPage/LoginPage";
 import ProfilePage from "pages/profilePage/ProfilePage";
 import ProfileEdit from "pages/profilePage/ProfileEdit";
+import About from "pages/aboutPage/About";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { CssBaseline,ThemeProvider } from "@mui/material";
@@ -22,6 +23,7 @@ function App() {
       <CssBaseline />
           <Routes>
             <Route path="/" element={<LoginPage />}/>
+            <Route path = "/about" element = {<About />} />
             <Route
               path="/home"
               element={isAuth ? <HomePage /> : <Navigate to="/" />}
