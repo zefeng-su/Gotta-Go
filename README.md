@@ -31,12 +31,12 @@ Description.
 https://seif13p3-gottago.vercel.app/
 
 ## Repository
-The source code is available on GitHub: 
-Frontend - https://github.com/zefeng-su/seif-13-project3-fe
-Backend - https://github.com/SIMCHUNKIAT/seif-13-project3-BE
+The source code is available on GitHub: <br/>
+Frontend - https://github.com/zefeng-su/seif-13-project3-fe <br/>
+Backend - https://github.com/SIMCHUNKIAT/seif-13-project3-BE  
 
 ## Authors
-Frontend: SU ZEFENG - https://github.com/zefeng-su
+Frontend: SU ZEFENG - https://github.com/zefeng-su <br/>
 Backend: SIM CHUN KIAT - https://github.com/SIMCHUNKIAT
 
  
