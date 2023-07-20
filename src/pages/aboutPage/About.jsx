@@ -4,6 +4,7 @@ import gitLogo from 'images/GitHub_Logo_White.png'
 import gitMark from 'images/github-mark-white.png'
 import { Link } from 'react-router-dom'
 import Navbar from 'pages/navbar/Navbar'
+//import FlexBetween from "components/FlexBetween";
 
 const buttonStyle = {
     backgroundColor: 'black',
@@ -42,19 +43,46 @@ function About() {
 
     return (
     <Box>
-        <Navbar /> 
+      <Navbar /> 
+        <Box padding='4rem' paddingTop='1.5rem'>
         <Box> 
-          <Typography>About</Typography>
+          <Typography
+            fontSize="16"
+            variant="h3"
+            color="black"
+          > About</Typography>
+          <br/>
           <Typography>This site is created using React.js and Material-UI.</Typography> 
         </Box>  
-        <Typography>Find us at:</Typography> 
-          
+        <br/>
+        
+          <Typography>Find us at:</Typography> 
+          <br/>
+          <Box>
+          <Typography>Su Zefeng</Typography>
             <Link to={`https://github.com/zefeng-su/`}>
-            <button type="button" style={buttonStyle}>
+              <button type="button" style={buttonStyle}>
                 <img className='git-mark' src={gitMark} style={gitMarkStyle} alt="GitHub_Mark_White"  />
                 <img className='git-logo' src={gitLogo} style={gitLogoStyle} alt="GitHub_Logo_White"  />
               </button>
-            </Link>       
+            </Link>    
+          </Box>
+            
+          <Box
+            sx={{
+             Mt: '10rem',
+            }}
+          >
+          <Typography>Sim Chun Kiat</Typography>
+            <Link to={`https://github.com/SIMCHUNKIAT/`}>
+              <button type="button" style={buttonStyle}>
+                <img className='git-mark' src={gitMark} style={gitMarkStyle} alt="GitHub_Mark_White"  />
+                <img className='git-logo' src={gitLogo} style={gitLogoStyle} alt="GitHub_Logo_White"  />
+              </button>
+            </Link>    
+       
+          </Box>
+      </Box>
     </Box>
   )
 }
