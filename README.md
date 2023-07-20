@@ -1,5 +1,5 @@
-# Title
-GottaGo!
+# GottaGo!
+GottaGo! ...
 
 ## About
 
