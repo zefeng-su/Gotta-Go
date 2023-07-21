@@ -54,7 +54,7 @@ function About() {
               marginBottom: '1rem',
             }}
           >
-            <Typography variant="h6" >This site is created using React.js and Material-UI.</Typography> 
+            <Typography variant="h6" >This site is created using full MERN stack, Material-UI, Redux Toolkit, Formik and Dropzone.</Typography> 
           </Box>  
       
           <Box
@@ -74,7 +74,7 @@ function About() {
             marginBottom: '1rem',
            }}
           >
-            <Typography variant="h6">Su Zefeng</Typography>
+            <Typography variant="h6">Su Zefeng, Frontend</Typography>
               <Link to={`https://github.com/zefeng-su/`}>
                 <StyledButton type="button">
                   <img className='git-mark' src={gitMark} style={gitMarkStyle} alt="GitHub_Mark_White"  />
@@ -84,7 +84,7 @@ function About() {
           </Box>
             
           <Box>
-            <Typography variant="h6">Sim Chun Kiat</Typography>
+            <Typography variant="h6">Sim Chun Kiat, Backend</Typography>
               <Link to={`https://github.com/SIMCHUNKIAT/`}>
                 <StyledButton type="button" >
                   <img className='git-mark' src={gitMark} style={gitMarkStyle} alt="GitHub_Mark_White"  />
