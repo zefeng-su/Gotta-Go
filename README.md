@@ -31,7 +31,7 @@ GottaGo! is a full MERN stack social web application for users to share their re
 - As a user, I can add other users as friends.
 - As a user, I can view my own profile page which filters and show only my posts.
 - As a user, I can view other users profile page which filters and show the particular user’s posts.
-- As a user, I can choose betweem dark/light mode UI
+- As a user, I can choose between dark/light mode UI
 
 ### Possible future enhancements
 - Twilio 2FA
