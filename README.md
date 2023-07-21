@@ -3,7 +3,7 @@ GottaGo! ...
 
 ## About
 
-### Technologies
+### Frontend Technologies
 1. React
 2. HTML5/CSS3/Javascript
 3. Material-UI
