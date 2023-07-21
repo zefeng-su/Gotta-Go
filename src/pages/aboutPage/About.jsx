@@ -1,26 +1,24 @@
 import React from 'react'
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery, Button, styled } from "@mui/material";
 import gitLogo from 'images/GitHub_Logo_White.png'
 import gitMark from 'images/github-mark-white.png'
 import { Link } from 'react-router-dom'
 import Navbar from 'pages/navbar/Navbar'
-//import FlexBetween from "components/FlexBetween";
-
-const buttonStyle = {
-    backgroundColor: 'black',
-    border: 'none',
-    color: 'white',
-    padding: '8px 16px',
-    textAlign: 'center',
-    textDecoration: 'none',
-    display: 'inline-flex',
-    borderRadius: '8px',
-    fontSize: '16px',
-    "&:hover": {
-        color: 'darkGrey',
-        cursor: "pointer",
-      }
-  };
+ 
+const StyledButton = styled(Button)({
+  backgroundColor: 'black',
+  border: 'none',
+  padding: '8px 16px',
+  textAlign: 'center',
+  textDecoration: 'none',
+  display: 'inline-flex',
+  borderRadius: '8px',
+  fontSize: '16px',
+  '&:hover': {
+    backgroundColor: 'grey',
+    cursor: 'pointer',
+  },
+});
 
 const gitMarkStyle = {
     width: '2rem',
@@ -33,54 +31,66 @@ const gitLogoStyle = {
  }
 
 function About() {
-    // const theme = useTheme(); //import if using later
-    // const neutralLight = theme.palette.neutral.light;
-    // const dark = theme.palette.neutral.dark;
-    // const background = theme.palette.background.default;
-    // const primaryLight = theme.palette.primary.light;
-    // const alt = theme.palette.background.alt;
-    // const mediumMain = theme.palette.neutral.mediumMain;
+   
+    const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
 
     return (
     <Box>
       <Navbar /> 
-        <Box padding='4rem' paddingTop='1.5rem'>
-        <Box> 
-          <Typography
-            fontSize="16"
-            variant="h3"
-            color="black"
-          > About</Typography>
-          <br/>
-          <Typography>This site is created using React.js and Material-UI.</Typography> 
-        </Box>  
-        <br/>
-        
-          <Typography>Find us at:</Typography> 
-          <br/>
-          <Box>
-          <Typography>Su Zefeng</Typography>
-            <Link to={`https://github.com/zefeng-su/`}>
-              <button type="button" style={buttonStyle}>
-                <img className='git-mark' src={gitMark} style={gitMarkStyle} alt="GitHub_Mark_White"  />
-                <img className='git-logo' src={gitLogo} style={gitLogoStyle} alt="GitHub_Logo_White"  />
-              </button>
-            </Link>    
-          </Box>
-            
+      <Box padding={isNonMobileScreens ? '7.5rem' : '3.5rem'} paddingTop='1.5rem'>
           <Box
             sx={{
-             Mt: '10rem',
+              marginBottom: '0.1rem',
+            }}
+          > 
+            <Typography
+              fontSize="16"
+              fontWeight="Bold"
+              variant="h3"
+            > About:</Typography>
+          </Box>  
+          <Box
+             sx={{
+              marginBottom: '1rem',
             }}
           >
-          <Typography>Sim Chun Kiat</Typography>
-            <Link to={`https://github.com/SIMCHUNKIAT/`}>
-              <button type="button" style={buttonStyle}>
-                <img className='git-mark' src={gitMark} style={gitMarkStyle} alt="GitHub_Mark_White"  />
-                <img className='git-logo' src={gitLogo} style={gitLogoStyle} alt="GitHub_Logo_White"  />
-              </button>
-            </Link>    
-       
+            <Typography variant="h6" >This site is created using React.js and Material-UI.</Typography> 
+          </Box>  
+      
+          <Box
+            sx={{
+              marginBottom: '0.25rem',
+            }}
+          > 
+            <Typography 
+              fontSize="14"
+              fontWeight="Bold"
+              variant="h4"
+            > Find us at:</Typography> 
+          </Box>
+
+          <Box
+           sx={{
+            marginBottom: '1rem',
+           }}
+          >
+            <Typography variant="h6">Su Zefeng</Typography>
+              <Link to={`https://github.com/zefeng-su/`}>
+                <StyledButton type="button">
+                  <img className='git-mark' src={gitMark} style={gitMarkStyle} alt="GitHub_Mark_White"  />
+                  <img className='git-logo' src={gitLogo} style={gitLogoStyle} alt="GitHub_Logo_White"  />
+                </StyledButton>
+              </Link>    
+          </Box>
+            
+          <Box>
+            <Typography variant="h6">Sim Chun Kiat</Typography>
+              <Link to={`https://github.com/SIMCHUNKIAT/`}>
+                <StyledButton type="button" >
+                  <img className='git-mark' src={gitMark} style={gitMarkStyle} alt="GitHub_Mark_White"  />
+                  <img className='git-logo' src={gitLogo} style={gitLogoStyle} alt="GitHub_Logo_White"  />
+                </StyledButton>
+              </Link>    
           </Box>
       </Box>
     </Box>
