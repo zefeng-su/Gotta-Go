@@ -1,8 +1,7 @@
+// Importing necessary libraries and components
 import {
     EditOutlined,
     DeleteOutlined,
-    //AttachFileOutlined,
-    //MoreHorizOutlined,
     ImageOutlined,  
     LocationOnOutlined,
     LocalOfferOutlined,
@@ -18,7 +17,6 @@ import {
     useTheme,
     Button,
     IconButton,
-    //useMediaQuery,
   } from "@mui/material";
   import FlexBetween from "components/FlexBetween";
   import Dropzone from "react-dropzone";
@@ -29,20 +27,27 @@ import {
   import { setPosts } from "state";
   
   function MyPostWidget ({ userId,picturePath }) {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch(); // Use the useDispatch hook from Redux 
+
+    // Use the useState hook to create local states for user, isImage, image and post.
     const [user, setUser] = useState(null);
     const [isImage, setIsImage] = useState(false);
     const [image, setImage] = useState(null);
     const [post, setPost] = useState("");
-    const { palette } = useTheme();
+
+    const { palette } = useTheme(); // Use the useTheme hook from Material UI to access the theme object.
+
+    // Use the useSelector hook from Redux to access the user's ID and token from the global state.
     const { _id } = useSelector((state) => state.user);
     const token = useSelector((state) => state.token);
-    //const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
+    
+    // Define theme properties
     const theme = useTheme();
     const neutralLight = theme.palette.neutral.light;
     const mediumMain = palette.neutral.mediumMain;
     const medium = palette.neutral.medium;
     
+    // Fetch the user data from the server using the user's ID and token.
     const getUser = async () => {
         const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/users/${userId}`, {
           method: "GET",
@@ -52,10 +57,12 @@ import {
         setUser(data);
       };
     
+      // Use the useEffect hook to call the getUser function when the component mounts.
       useEffect(() => {
         getUser();
       }, []); // eslint-disable-line react-hooks/exhaustive-deps
     
+      // Return null if the user state is not yet set. This prevents the component from rendering without user data
       if (!user) {
         return null;
       }
@@ -64,12 +71,14 @@ import {
         firstName,
       } = user;
     
+      // Handles the post submission. It sends a POST request to the server with the form data.
       const handlePost = async (e) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append("userId", _id);
         formData.append("description", post);
-      
+        
+        // If an image is provided, append the image and its name to the form data. Else, append an empty string.
         if (image) {
           formData.append("picture", image);
           formData.append("picturePath", image.name);
@@ -77,15 +86,18 @@ import {
           formData.append("picturePath", ""); // include an empty string for picturePath
         }
       
+        // Send the POST request to the server with the form data.
         const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/posts`, {
           method: "POST",
           headers: { Authorization: `Bearer ${token}` },
           body: formData,
         });
       
+        // Parse the response as JSON and dispatch the setPosts action with the response data.
         const posts = await response.json();
         dispatch(setPosts({ posts }));
       
+        // Reset image and post state
         setImage(null);
         setPost("");
         window.location.reload(); //temp solution to refresh after submitting post

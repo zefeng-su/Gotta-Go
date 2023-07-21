@@ -1,4 +1,6 @@
-// color design tokens export
+// This is a JavaScript object that serves as a design token system for colors used in the app.
+// Each color is represented as an object with different shades represented as properties of that object.
+// For instance, the "grey" color has 12 shades ranging from 0 (white) to 1000 (black).
 export const colorTokens = {
   grey: {
     0: "#FFFFFF",
@@ -29,14 +31,17 @@ export const colorTokens = {
   },
 };
 
-// mui theme settings
+// This function returns an object that serves as a configuration for Material-UI's theme.
+// The theme configuration changes based on whether the application is in "light" or "dark" mode, which is determined by the "mode" parameter.
 export const themeSettings = (mode) => {
   return {
+    // Sets the color mode for Material-UI theme. Depending on the "mode" value, it can be either "dark" or "light".
+    // The ternary operator is used to change color settings based on the application's color mode.
     palette: {
       mode: mode,
       ...(mode === "dark"
         ? {
-            // palette values for dark mode
+            // Dark mode colors:
             primary: {
               dark: colorTokens.primary[200],
               main: colorTokens.primary[500],
@@ -55,7 +60,7 @@ export const themeSettings = (mode) => {
             },
           }
         : {
-            // palette values for light mode
+            // Light mode colors:
             primary: {
               dark: colorTokens.primary[700],
               main: colorTokens.primary[500],
@@ -74,9 +79,13 @@ export const themeSettings = (mode) => {
             },
           }),
     },
+    // Defining the typography settings.
+    // The default font family is "Noto Sans", with a fallback to the generic "sans-serif" font family if "Noto Sans" isn't available.
+    // The default font size is 12.
+    // note: h1 is used for the app name font
     typography: {
       fontFamily: ["Noto Sans", "sans-serif"].join(","),
-      fontSize: 12,
+      fontSize: 12, 
       h1: {
         fontFamily: ["Rubik", "sans-serif"].join(","),
         fontSize: 40,

@@ -1,3 +1,4 @@
+// Importing necessary libraries and components
 import {
   ManageAccountsOutlined,
   //EditOutlined,
@@ -11,43 +12,47 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function UserWidget({ userId, picturePath }) {
-  const [user, setUser] = useState(null);
-  const { palette } = useTheme();
-  const navigate = useNavigate();
-  const token = useSelector((state) => state.token);
-  const loggedInUserId = useSelector((state) => state.user._id);
+  const [user, setUser] = useState(null);  // Defining local state variable 'user'.  
+  const { palette } = useTheme(); // useTheme hook is used to access the theme values.
+  const navigate = useNavigate(); // Hook used for navigation
+  const token = useSelector((state) => state.token); // Extracting the token from the redux state
+  const loggedInUserId = useSelector((state) => state.user._id); // Extracting the logged in user's Id from the redux state
+
+  // Define some color values for use in component styling
   const dark = palette.neutral.dark;
   const medium = palette.neutral.medium;
   const main = palette.neutral.main;
 
-
+  // GET user details from backend API
   const getUser = async () => {
     const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/users/${userId}`, {
       method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}` }, // Pass the token in the headers for authentication
     });
-    const data = await response.json();
-    setUser(data);
+    const data = await response.json(); // Parse the response data to JSON
+    setUser(data); // Update the 'user' state with the fetched data
   };
 
+   // Using the useEffect hook to call getUser when the component first mounts
   useEffect(() => {
     getUser(); 
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+   // Return null if the user state is not yet set. This prevents the component from rendering without user data
   if (!user) {
     return null;
   }
 
+  // Destructure the user object into the variables needed
   const {
     firstName,
     lastName,
-    //location,
     viewedProfile,
     impressions,
     friends,
   } = user;
 
-  const isCurrentUser = loggedInUserId === userId;
+  const isCurrentUser = loggedInUserId === userId;  // Define a boolean to check if the user being rendered is the logged in user
 
   return (
     <WidgetWrapper>

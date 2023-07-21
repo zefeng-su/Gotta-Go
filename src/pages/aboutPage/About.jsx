@@ -1,10 +1,12 @@
+// Import necessary dependencies and components
 import React from 'react'
 import { Box, Typography, useMediaQuery, Button, styled } from "@mui/material";
 import gitLogo from 'images/GitHub_Logo_White.png'
 import gitMark from 'images/github-mark-white.png'
 import { Link } from 'react-router-dom'
 import Navbar from 'pages/navbar/Navbar'
- 
+
+// Define a custom styled button with specific styles
 const StyledButton = styled(Button)({
   backgroundColor: 'black',
   border: 'none',
@@ -20,18 +22,13 @@ const StyledButton = styled(Button)({
   },
 });
 
-const gitMarkStyle = {
-    width: '2rem',
-    height: 'auto',
-};
-
-const gitLogoStyle = {
-    width: '5rem',
-    height: 'auto',
- }
+// Define styles for GitHub mark and logo images
+const gitMarkStyle = { width: '2rem', height: 'auto', };
+const gitLogoStyle = { width: '5rem', height: 'auto', }
 
 function About() {
-   
+
+    // Use the useMediaQuery hook from Material-UI to check if the screen width is above 1000 pixels.
     const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
 
     return (

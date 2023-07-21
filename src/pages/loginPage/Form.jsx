@@ -1,3 +1,4 @@
+// Import necessary dependencies and components
 import { useState } from "react";
 import {
   Box,
@@ -16,7 +17,7 @@ import { setLogin } from "state";
 import Dropzone from "react-dropzone";
 import FlexBetween from "components/FlexBetween";
 
-
+// Defining FE validation schema for registration using Yup
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("required"),
   lastName: yup.string().required("required"),
@@ -25,11 +26,13 @@ const registerSchema = yup.object().shape({
   picture: yup.string().required("required"),
 });
 
+// Defining FE validation schema for login using Yup
 const loginSchema = yup.object().shape({
   email: yup.string().email("invalid email").required("required"),
   password: yup.string().required("required"),
 });
 
+// Initial values for the registration form
 const initialValuesRegister = {
   firstName: "",
   lastName: "",
@@ -38,27 +41,29 @@ const initialValuesRegister = {
   picture: "",
 };
 
+// Initial values for the login form
 const initialValuesLogin = {
   email: "",
   password: "",
 };
 
 function Form () {
-  const [pageType, setPageType] = useState("login");
-  const { palette } = useTheme();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const isNonMobile = useMediaQuery("(min-width:600px)");
-  const isLogin = pageType === "login";
-  const isRegister = pageType === "register";
+  const [pageType, setPageType] = useState("login"); // determines if it is a login or register form
+  const { palette } = useTheme(); // accessing theme values
+  const dispatch = useDispatch(); // accessing dispatch function from Redux
+  const navigate = useNavigate(); // accessing navigation function from React Router
+  const isNonMobile = useMediaQuery("(min-width:600px)"); // to handle responsive design
+  const isLogin = pageType === "login"; // boolean indicating if it is a login form
+  const isRegister = pageType === "register"; // boolean indicating if it is a register form
 
+  // For user registration  
   const register = async (values, onSubmitProps) => {
     // this allows us to send form info with image
     const formData = new FormData();
     for (let value in values) {
       formData.append(value, values[value]);
     }
-    formData.append("picturePath", values.picture.name);
+    formData.append("picturePath", values.picture.name); // Appending the image file name under the key 'picturePath'
 
     // this allows picture to be not required, but causes a bug at the moment
     // const formData = new FormData();
@@ -70,8 +75,8 @@ function Form () {
     //   }
     //}
 
+    // Using fetch API to send a POST request to the register endpoint
     const savedUserResponse = await fetch(
-      //placeholder db location
       `${process.env.REACT_APP_SERVER_URL}/auth/register`, 
       {
         method: "POST",
@@ -79,22 +84,27 @@ function Form () {
       }
     );
     const savedUser = await savedUserResponse.json();
-    onSubmitProps.resetForm();
+    onSubmitProps.resetForm(); // Resetting the form after submission
 
+    // If the user is saved successfully, change the form to login form
     if (savedUser) {
       setPageType("login");
     }
   };
 
+  // For user login
   const login = async (values, onSubmitProps) => {
-    //placeholder db location
+
+    // Using fetch API to send a POST request to the login endpoint
     const loggedInResponse = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login` , {   
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     });
-    const loggedIn = await loggedInResponse.json();
-    onSubmitProps.resetForm();
+    const loggedIn = await loggedInResponse.json(); // Parsing the response to JSON
+    onSubmitProps.resetForm();  // Resetting the form after submission
+
+    // If the user is logged in successfully, dispatch the setLogin action and navigate to home page
     if (loggedIn) {
       dispatch(
         setLogin({
@@ -106,9 +116,10 @@ function Form () {
     }
   };
 
+  //// To handle form submission
   const handleFormSubmit = async (values, onSubmitProps) => {
-    if (isLogin) await login(values, onSubmitProps);
-    if (isRegister) await register(values, onSubmitProps);
+    if (isLogin) await login(values, onSubmitProps);  // If the form type is 'login', call the login function
+    if (isRegister) await register(values, onSubmitProps); // If the form type is 'register', call the register function
   };
 
   return (
@@ -136,6 +147,7 @@ function Form () {
               "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
             }}
           >
+             {/* Conditional rendering for the registration form */}
             {isRegister && (
               <>
                 <TextField

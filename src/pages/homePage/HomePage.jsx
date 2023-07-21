@@ -1,3 +1,4 @@
+// Import necessary dependencies and components
 import { Box, useMediaQuery } from "@mui/material";
 import Navbar from "pages/navbar/Navbar";
 import UserWidget from "pages/widgets/UserWidget";
@@ -8,7 +9,11 @@ import FriendListWidget from "pages/widgets/FriendListWidget";
 
 
 function HomePage () {
+    // Use the useMediaQuery hook from Material-UI to check if the screen width is above 1000 pixels.
     const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
+
+    // Access the "_id" and "picturePath" properties from the "user" state using useSelector from React Redux.
+    // These properties will be used as props in the UserWidget, MyPostWidget, and FriendListWidget components.
     const {_id, picturePath } = useSelector((state)=>state.user);
 
     return (

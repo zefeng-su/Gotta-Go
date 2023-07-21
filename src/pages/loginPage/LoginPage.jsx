@@ -1,9 +1,10 @@
+// Import necessary dependencies and components
 import { Box , Typography, useTheme, useMediaQuery } from "@mui/material"
 import Form from './Form'
 
 function LoginPage () {
-    const theme = useTheme();
-    const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
+    const theme = useTheme();  // Using the `useTheme` hook to allow access to the default theme
+    const isNonMobileScreens = useMediaQuery("(min-width: 1000px)"); // Use the useMediaQuery hook from Material-UI to check if the screen width is above 1000 pixels.
    
     return (
     <Box>

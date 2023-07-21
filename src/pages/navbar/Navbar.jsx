@@ -1,3 +1,4 @@
+// Import necessary dependencies and components
 import { useState } from "react";
 import {
   Box,
@@ -11,9 +12,6 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import {
-  //Search,
-  //Message,
-  //Notifications,
   DarkMode,
   LightMode,
   Help,
@@ -26,12 +24,16 @@ import { useNavigate } from "react-router-dom";
 import FlexBetween from "components/FlexBetween";
 
 function Navbar () {
-  const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const user = useSelector((state) => state.user);
-  const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
+  const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false); // State to handle mobile menu toggling
 
+   // Redux hooks to access and dispatch actions from the global state
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
+  const navigate = useNavigate(); // React Router hook for navigation
+  const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");  // Use the useMediaQuery hook from Material-UI to check if the screen width is above 1000 pixels.
+ 
+  // Get the MUI theme and extract necessary colors
   const theme = useTheme();
   const neutralLight = theme.palette.neutral.light;
   const dark = theme.palette.neutral.dark;
@@ -40,11 +42,13 @@ function Navbar () {
   const alt = theme.palette.background.alt;
   const mediumMain = theme.palette.neutral.mediumMain;
 
-const fullName = `${user.firstName} ${user.lastName}`;
+const fullName = `${user.firstName} ${user.lastName}`; // Get the user's full name
 
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt}>
+      {/* Left section of the Navbar */}
       <FlexBetween gap="1.75rem">
+        {/* Brand logo with a clickable link to the home page */}
         <Typography
           fontWeight="bold"
           fontSize="clamp(1rem, 2rem, 2.25rem)"
@@ -60,6 +64,8 @@ const fullName = `${user.firstName} ${user.lastName}`;
         >
           GottaGo!
         </Typography>
+
+        {/* Filter tags section, only visible on non-mobile screens */}
         {isNonMobileScreens && (
           <FlexBetween
             backgroundColor={neutralLight}
@@ -102,9 +108,10 @@ const fullName = `${user.firstName} ${user.lastName}`;
         )}
       </FlexBetween>
 
-      {/* DESKTOP NAV */}
+      {/* DESKTOP NAV */}  {/* Right section of the Navbar, changes based on screen size */}
       {isNonMobileScreens ? (
         <FlexBetween gap="2rem">
+           {/* Dark mode toggle button */}
           <IconButton onClick={() => dispatch(setMode())}>
             {theme.palette.mode === "dark" ? (
               <DarkMode sx={{ fontSize: "25px" }} />
@@ -112,9 +119,13 @@ const fullName = `${user.firstName} ${user.lastName}`;
               <LightMode sx={{ color: dark, fontSize: "25px" }} />
             )}
           </IconButton>
+
+           {/* Help icon, linking to the "about" page */}
           <IconButton onClick={() => navigate("/about")}>
             <Help sx={{ color: dark , fontSize: "25px" }} />
           </IconButton>
+
+          {/* Dropdown select menu showing user full name and logout */}
           <FormControl variant="standard" value={fullName}>
             <Select
               value={fullName}
@@ -141,6 +152,7 @@ const fullName = `${user.firstName} ${user.lastName}`;
           </FormControl>
         </FlexBetween>
       ) : (
+        /*Hamburger menu icon for mobile view*/ 
         <IconButton
           onClick={() => setIsMobileMenuToggled(!isMobileMenuToggled)}
         >
@@ -148,7 +160,7 @@ const fullName = `${user.firstName} ${user.lastName}`;
         </IconButton>
       )}
 
-      {/* MOBILE NAV */}
+      {/* MOBILE NAV*/}
       {!isNonMobileScreens && isMobileMenuToggled && (
         <Box
           position="fixed"
@@ -177,6 +189,7 @@ const fullName = `${user.firstName} ${user.lastName}`;
             alignItems="center"
             gap="3rem"
           >
+             {/* Dark mode toggle button */}
             <IconButton
               onClick={() => dispatch(setMode())}
               sx={{ fontSize: "25px" }}
@@ -187,9 +200,13 @@ const fullName = `${user.firstName} ${user.lastName}`;
                 <LightMode sx={{ color: dark, fontSize: "25px" }} />
               )}
             </IconButton>
+
+            {/* Help icon, linking to the "about" page */}
             <IconButton onClick={() => navigate("/about")}>
               <Help sx={{ color: dark , fontSize: "25px" }} />
             </IconButton>
+
+             {/* Dropdown select menu for user profile and logout */}
             <FormControl variant="standard" value={fullName}>
               <Select
                 value={fullName}

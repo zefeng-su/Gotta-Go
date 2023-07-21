@@ -1,3 +1,4 @@
+// Importing necessary libraries and components
 import {
   ChatBubbleOutlineOutlined,
   FavoriteBorderOutlined,
@@ -11,9 +12,9 @@ import FlexBetween from "components/FlexBetween";
 import Friend from "components/Friend";
 import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux"; 
 import { setPost, deletePost, setLike } from "state";
-//import UserImage from "components/UserImage";
+ 
 
 function PostWidget ({
   postId,
@@ -24,25 +25,34 @@ function PostWidget ({
   userPicturePath,
   likes,
   comments,}) {
-  const [isComments, setIsComments] = useState(false);
+   
+  const [isComments, setIsComments] = useState(false); 
   const [isEditing, setIsEditing] = useState(false); //state for tracking edit mode
   const [editedDescription, setEditedDescription] = useState(description); //state for storing the edited description
-  const dispatch = useDispatch();
-  const token = useSelector((state) => state.token);
+  const dispatch = useDispatch(); // useDispatch hook used for dispatching actions to the Redux store
+
+  // useSelector hook used for selecting the posts and token state from the Redux store
+  const token = useSelector((state) => state.token);  
   const loggedInUserId = useSelector((state) => state.user._id);
+
+   // Check if the current user has liked the post and get the total number of likes
   const isLiked = Boolean(likes[loggedInUserId]);
   const likeCount = Object.keys(likes).length;
 
+  // Accessing the theme object for styled components
   const { palette } = useTheme();
   const main = palette.neutral.main;
   const primary = palette.primary.main;
 
+   // Event handler for editing a post
   const handleEdit = () => {
     setIsEditing(true); // Enter edit mode
   };
 
+  // Event handler for saving the edited post
   const handleEditSave = async () => {
     try {
+      //PATCH request to the server to update the post
       const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/posts/${postId}/edit`, {
         method: "PATCH",
         headers: {
@@ -64,8 +74,10 @@ function PostWidget ({
     }
   };
   
+   // Event handler for deleting a post
   const handleDelete = async () => {
     try {
+      //DELETE request to the server to remove the post
       const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/posts/${postId}/delete`, {
         method: "DELETE",
         headers: {
@@ -86,6 +98,7 @@ function PostWidget ({
     }
   };
 
+  //PATCH request to the server to like a post and update the Redux store
   const patchLike = async () => {
     const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/posts/${postId}/like`, {
       method: "PATCH",
