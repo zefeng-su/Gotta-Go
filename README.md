@@ -1,5 +1,5 @@
 # GottaGo!
-GottaGo! ...
+GottaGo! is a full MERN stack social web application for users to share their recommendation of places.
 
 ## About
 
@@ -21,11 +21,24 @@ GottaGo! ...
 
 ### User Stories
 - As a user, I should be able to understand intuitively what the site is about.
-- As a user, ...
+- As a user, I can create post to share recommendations of places (food, travel, shops,services etc).
+- As a user, I can add image and text to my post.
+- As a user, I can like/unlike posts.
+- As a user, I can edit and delete my own post.
+- As a user, I can edit my user profile and delete my account.
+- As a user, I should not be able to edit and delete other user's post.
+- As a user, I should not be able to edit other user's profile and delete their account.
+- As a user, I can add other users as friends.
+- As a user, I can view my own profile page which filters and show only my posts.
+- As a user, I can view other users profile page which filters and show the particular user’s posts.
+- As a user, I can choose betweem dark/light mode UI
 
 ### Possible future enhancements
 - Twilio 2FA
-- ...
+- Incorporate Google Maps
+- User can comment on posts
+- User can add category tags to their post
+- User can filter post views by tag such as food, travel, shops, services etc
  
 ## Live Site
 https://seif13p3-gottago.vercel.app/
