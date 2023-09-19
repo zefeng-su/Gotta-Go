@@ -45,7 +45,7 @@ https://seif13p3-gottago.vercel.app/
 
 ## Repository
 The source code is available on GitHub: <br/>
-Frontend - https://github.com/zefeng-su/seif-13-project3-fe <br/>
+Frontend - https://github.com/zefeng-su/Gotta-Go <br/>
 Backend - https://github.com/SIMCHUNKIAT/seif-13-project3-BE  
 
 ## Authors
